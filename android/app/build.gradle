@@ -103,6 +103,12 @@ project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 ]
 
+project.ext.envConfigFiles = [
+  debug: ".env",
+  release: ".env.production",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**

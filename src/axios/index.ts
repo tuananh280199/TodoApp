@@ -7,7 +7,6 @@ import Config from 'react-native-config';
 axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    config.headers.Authorization = '';
     return config;
   },
   function (error) {
@@ -21,7 +20,7 @@ axios.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return response;
+    return response.data;
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
