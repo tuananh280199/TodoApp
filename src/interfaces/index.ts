@@ -1,8 +1,5 @@
-export interface todoTask {
+export interface ITodoTask {
   id: string;
   name: string;
   status: false;
-  createdAt: number;
-  updatedAt: number;
-  deletedAt: number;
 }
