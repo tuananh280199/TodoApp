@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: (deviceHeight - 250) / 2 - 40,
+    paddingTop: (deviceHeight - 300) / 2 - 40,
     backgroundColor: '#000',
     opacity: 0.8,
   },
