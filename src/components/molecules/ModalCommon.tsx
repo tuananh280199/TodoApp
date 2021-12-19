@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -11,16 +11,23 @@ import {
 
 import {TextComponent} from '../atoms/Text';
 import {deviceHeight, deviceWidth} from '../../utils/dimensions';
+import {ITodoTask} from '../../interfaces';
 
 interface Props {
   visible: boolean;
   title: string;
-  handleClickOK: () => void;
+  task?: ITodoTask;
+  handleClickOK: (nameTask: string) => void;
   handleClickCancel: () => void;
 }
 
 export const ModalComponent = (props: Props) => {
-  const {title, visible, handleClickOK, handleClickCancel} = props;
+  const {title, visible, handleClickOK, handleClickCancel, task} = props;
+  const [nameTask, setNameTask] = useState<string>('');
+
+  useEffect(() => {
+    setNameTask(task?.name || '');
+  }, [task?.name]);
 
   return (
     <Modal animationType="fade" transparent={true} visible={visible}>
@@ -36,10 +43,17 @@ export const ModalComponent = (props: Props) => {
                 <TextInput
                   style={styles.textInput}
                   placeholder={'Enter name task'}
+                  defaultValue={nameTask}
+                  onChangeText={setNameTask}
                 />
               </View>
               <View style={styles.footer}>
-                <TouchableOpacity onPress={handleClickOK} style={styles.btnOK}>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleClickOK(nameTask);
+                    setNameTask('');
+                  }}
+                  style={styles.btnOK}>
                   <TextComponent text={'OK'} style={styles.txtBtn} />
                 </TouchableOpacity>
                 <TouchableOpacity
